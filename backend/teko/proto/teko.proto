@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package teko_service;
+
+service TekoService {
+  rpc FindAvailableSeats(FindAvailableSeatsRequest) returns (FindAvailableSeatsResponse) {}
+  rpc ReserveSeats (ReserveSeatsRequest) returns (ReserveSeatsResponse) {}
+  rpc ConfigureCinemaSize (ConfigureCinemaSizeRequest) returns (ConfigureCinemaSizeResponse) {}
+  rpc ChangeMinimumDistance (ChangeMinimumDistanceRequest) returns (ChangeMinimumDistanceResponse) {}
+  rpc GetCinema (GetCinemaRequest) returns (GetCinemaResponse) {}
+}
+
+message GetCinemaRequest {}
+
+message CreateCinemaRequest {
+  Cinema cinema = 1;
+}
+
+message ConfigureCinemaSizeRequest {
+  int32 newNumberOfColumns = 1;
+  int32 newNumberOfRows = 2;
+}
+
+message ChangeMinimumDistanceRequest {
+  int32 minimumDistance = 1;
+}
+
+message ReserveSeatsRequest {
+  repeated Seat seats = 2;
+}
+
+message FindAvailableSeatsRequest {
+  int32 numberOfSeats = 2;
+}
+
+message GetCinemaResponse {
+  Status status = 1;
+  Cinema Cinema = 2;
+}
+
+message CreateCinemaResponse {
+  Status status = 1;
+  Cinema newCinema = 2;
+}
+
+message ConfigureCinemaSizeResponse {
+  Status status = 1;
+  Cinema updatedCinema = 2;
+}
+
+message ChangeMinimumDistanceResponse {
+  Status status = 1;
+  Cinema updatedCinema = 2;
+}
+
+message ReserveSeatsResponse {
+  Status status = 1;
+}
+
+message FindAvailableSeatsResponse {
+  Status status = 1;
+  repeated Seat seats = 2;
+}
+
+message Status {
+  int32 code = 1;
+  string message = 2;
+}
+
+message Cinema {
+  int32 minimumDistance = 1;
+  int32 numberOfRows = 2;
+  int32 numberOfColumns = 3;
+  repeated Seat reservedSeats = 4;
+}
+
+message Seat {
+  int32 row = 1;
+  int32 column = 2;
+}

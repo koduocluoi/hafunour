@@ -1,0 +1,16 @@
+.EditableProductPage form {
+    padding-bottom: 15px;
+}
+
+.EditableProductPage form textarea {
+    height: 20px;
+    font-size: 24px;
+}
+
+.imagePreview img {
+    height: 200px;
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+}
